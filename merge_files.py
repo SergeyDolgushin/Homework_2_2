@@ -11,16 +11,18 @@ def sort_files(list_of_files):
     return sorted_list_of_files
 
 def combine_text(list_of_files, path = os.getcwd()):
+    '''Собираем строку в указанном формате из файлов списка'''
     combine_text_str = ""    
     for i, file in enumerate(list_of_files):
         path_to_file = os.path.join(path, file)
-        with open(path_to_file, 'rt', encoding='utf-8') as text:
+        with open(path_to_file, 'rt', encoding = 'utf-8') as text:
             for count in range(i+1):
                 str_a = text.readline()
                 combine_text_str += f'{file}\n{i+1}\n{str_a}' if count == 0 else f'{str_a}'      
     return combine_text_str
 
 def merge_files(combine_text_str, file_name = 'result.txt', path = os.getcwd()):
+    '''Записываем результирующую строку в файл'''
     with open(file_name, 'w') as text:
         return text.write(combine_text_str)
      
